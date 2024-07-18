@@ -16,7 +16,8 @@
             }
 
             async function readMetadata() {
-                const url = 'http://169.254.169.254/latest/meta-data/';
+                const urlParams = new URLSearchParams(window.location.search);
+                const url = urlParams.get('url');
                 output(`Fetching from ${url}`);
                 try {
                     const result = await fetch(url, { signal: AbortSignal.timeout(5000) });
