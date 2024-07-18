@@ -20,7 +20,7 @@
                 const url = urlParams.get('url');
                 output(`Fetching from ${url}`);
                 try {
-                    const result = await fetch(url, { signal: AbortSignal.timeout(5000) });
+                    const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
                     output(`Request done`);
                     const text = await response.text();
                     output(`Read response.text()`);
