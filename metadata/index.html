@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <div id="output">
+            <h1>Output:</h1>
+        </div>
+        <script>
+            const outputDiv = document.getElementById('output');
+            function output(text) {
+                const newP = document.createElement('p');
+                const newContent = document.createTextNode(text);
+                newP.appendChild(newContent);
+                outputDiv.appendChild(newP);
+            }
+
+            async function readMetadata() {
+                try {
+                    const result = await fetch('http://169.254.169.254/latest/meta-data/', { signal: AbortSignal.timeout(5000) });
+                    const text = await response.text();
+                    output(text);
+                } catch (e) {
+                    output(JSON.stringify(e));
+                }
+            }
+
+            readMetadata();
+        </script>
+    </body>
+</html>
