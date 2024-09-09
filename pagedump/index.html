@@ -22,6 +22,13 @@
                 try {
                     const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
                     output(`Request done`);
+
+                    // Read and output headers
+                    output('Headers:');
+                    for (let [key, value] of response.headers.entries()) {
+                        output(`${key}: ${value}`);
+                    }
+
                     const text = await response.text();
                     output(`Read response.text()`);
                     output(text);
